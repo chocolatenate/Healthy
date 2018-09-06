@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,9 +27,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/up"
-                android:hint="@string/height"
+                android:hint="@string/day"
                 android:inputType="text"
-                android:id="@+id/height"/>
+                android:id="@+id/date"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -41,31 +42,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CALCULATE"
-                android:id="@+id/cal_btn"/>
+                android:text="SAVE"
+                android:id="@+id/save_btn"/>
 
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/your_bmi"
-        android:layout_width="match_parent"
 
-        android:layout_height="wrap_content"
-        tools:text="Your BMI"
-        android:textAlignment="center"
-        android:textSize="30dp" />
-
-    <TextView
-        android:id="@+id/bmi"
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
-        android:layout_weight="1.04"
-
-        tools:text="26.55"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        />
 
 </LinearLayout>
