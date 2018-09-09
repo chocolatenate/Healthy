@@ -17,7 +17,8 @@ import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
     ArrayList<String> _menu = new ArrayList<>();
-//
+
+    //
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -27,32 +28,22 @@ public class MenuFragment extends Fragment {
 
         final ArrayAdapter<String> _menuAdapter = new ArrayAdapter<String>(
                 getActivity(),
-                android.R.layout.simple_list_item_1,_menu
+                android.R.layout.simple_list_item_1, _menu
         );
-//        final ArrayAdapter<String> weightAdapter = new ArrayAdapter<String>(
-//                getActivity(),
-//                android.R.layout.simple_list_item_1,weight
-//        );
+
         ListView _menuList = getView().findViewById(R.id.menu_list);
-        //ListView _weightList = getView().findViewById(R.id.weight_list);
         _menuList.setAdapter(_menuAdapter);
-        //_weightList.setAdapter(weightAdapter);
         _menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("MENU", "Click on menu =" + _menu.get(i));
-                if(i==0) {
+                if (i == 0) {
                     getActivity().startActivity(new Intent(getActivity(), BmiActivity.class));
 
-                } else if (i==1) {
+                } else if (i == 1) {
                     getActivity().startActivity(new Intent(getActivity(), WeightActivity.class));
                 }
 
-
-
-//                getActivity().getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.main_view,new BmiFragment()).commit();
             }
         });
     }
@@ -60,6 +51,6 @@ public class MenuFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_menu ,container,false);
+        return inflater.inflate(R.layout.fragment_menu, container, false);
     }
 }

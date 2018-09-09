@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginFragment extends Fragment {
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -57,9 +56,5 @@ public class LoginFragment extends Fragment {
                 getActivity().startActivity(new Intent(getActivity(),RegisterActivity.class));
             }
         });
-
-
-
-
-    }
+        }
 }

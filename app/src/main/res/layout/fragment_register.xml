@@ -15,29 +15,34 @@
                 android:drawableLeft="@drawable/ico_person"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/user_id"/>
+                android:hint="User ID"
+                android:id="@+id/regis_id"/>
             <EditText
                 android:inputType="text"
                 android:drawableLeft="@drawable/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name"/>
+                android:hint="name"
+                android:id="@+id/regis_name"/>
             <EditText
                 android:inputType="number"
                 android:drawableLeft="@drawable/age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/age"/>
+                android:hint="@string/age"
+                android:id="@+id/regis_age"/>
             <EditText
                 android:inputType="textPassword"
                 android:drawableLeft="@drawable/lock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password"/>
+                android:hint="@string/password"
+                android:id="@+id/regis_pass"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="REGISTER NEW ACCOUNT"/>
+                android:text="REGISTER NEW ACCOUNT"
+                android:id="@+id/regis_bnt"/>
 
         </LinearLayout>
     </ScrollView>
