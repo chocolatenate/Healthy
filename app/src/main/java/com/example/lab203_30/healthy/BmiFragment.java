@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -62,13 +63,15 @@ public class BmiFragment extends Fragment {
 
                     float bmi = weightFlot / ((heightFlot / 100) * (heightFlot / 100));
                     if (TextUtils.isEmpty(heightStr) || TextUtils.isEmpty(weightStr)) {
-                        Log.d("user", "FIELD NAME IS EMPTY");
+                        Toast.makeText(getContext(),"กรุณาระบุข้อมูลให้ครบถ้วน",Toast.LENGTH_SHORT).show();
+                        Log.d("BMI", "FIELD NAME IS EMPTY");
                     } else {
                         TextView you = getView().findViewById(R.id.your_bmi);
                         TextView bmiTextview = getView().findViewById(R.id.bmi);
                         you.setText("YOUR BMI");
                         bmiTextview.setText(String.format("%.2f", bmi));
                         //_weight.add(Float.toString(bmi));
+                        Log.d("BMI","BMI IS VALUE");
                     }
 
                 } catch (Exception e){

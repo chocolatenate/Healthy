@@ -2,6 +2,7 @@ package com.example.lab203_30.healthy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -14,6 +15,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class LoginFragment extends Fragment {
     @Nullable
     @Override
@@ -25,6 +31,10 @@ public class LoginFragment extends Fragment {
     @Override //ctrl+o
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (FirebaseAuth.getInstance().getCurrentUser()!= null){
+            getActivity().startActivity(new Intent(getActivity(),MenuActivity.class));
+            return;//เพื่อไม่ให้ทำคำสังด้านล่าง
+        }
 
         if (getView() == null) return;
         Button loginBtn = getView().findViewById(R.id.login_btn);
@@ -38,13 +48,31 @@ public class LoginFragment extends Fragment {
                 if(TextUtils.isEmpty(userIdStr)||TextUtils.isEmpty(passIdStr)){
                     Toast.makeText(getContext(), "กรุญาระบุ user or password", Toast.LENGTH_SHORT).show();//Toast.makeText(getContex()/getActivity(),ข้อความ,เวลา)
                     Log.d("user","USER OR PASSWORD IS EMPTY");
-                }else if (!userIdStr.equals("admin")|| !passIdStr.equals("admin")){
-                    Toast.makeText(getContext(),"user or password ไม่ถูกต้อง",Toast.LENGTH_SHORT).show();
-                    Log.d("user","INVALID USER OR PASSWORD");
+
+//                }else if (!userIdStr.equals("admin")|| !passIdStr.equals("admin")){
+//                    Toast.makeText(getContext(),"user or password ไม่ถูกต้อง",Toast.LENGTH_SHORT).show();
+//                    Log.d("user","INVALID USER OR PASSWORD");
                 }else {
-                    getActivity().startActivity(new Intent(getActivity(), MenuActivity.class));//Intent -Actต้นทาง
+                    //getActivity().startActivity(new Intent(getActivity(), MenuActivity.class));//Intent -Actต้นทาง
 //                    ((MainActivity) getActivity()).gotoBmi();
-                    Log.d("user","GOTO BMI");
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(userIdStr,passIdStr).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult)
+                        {
+                            if(authResult.getUser().isEmailVerified()== true) {
+                                getActivity().startActivity(new Intent(getActivity(), MenuActivity.class));
+                                Log.d("user", "GOTO MENU");
+                            }
+                        }
+
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("user","ERROR");
+                            Toast.makeText(getContext(),"ERROE ="+e.getMessage(),Toast.LENGTH_SHORT);
+                        }
+                    });
+
                 }
 
             }

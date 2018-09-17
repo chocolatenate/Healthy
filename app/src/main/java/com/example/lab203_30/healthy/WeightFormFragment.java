@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.lab203_30.healthy.Weight.WeightFragment;
 import com.example.lab203_30.healthy.Weight.weight;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -37,14 +39,20 @@ public class WeightFormFragment extends Fragment {
                 String date_str = date.getText().toString();
                 String weight_str = weight.getText().toString();
 
-                weights.add(new weight(date_str, Integer.parseInt(weight_str), "UP"));
+                //weights.add(new weight(date_str, Integer.parseInt(weight_str), "UP"));
 
                 Intent data = new Intent();
                 data.putExtra("weight", weight_str);
                 data.putExtra("date",date_str);
 
-                getActivity().setResult(Activity.RESULT_OK, data);
-                getActivity().finish();
+//                FirebaseFirestore.getInstance().collection("myfitness").document("uid")
+//                        .collection("weight").document("data")
+
+
+//                getActivity().setResult(Activity.RESULT_OK, data);
+//                getActivity().finish();
+//
+//                Toast.makeText(getContext(),"บันทึกเรียบร้อย",Toast.LENGTH_SHORT).show();
 
             }
         });

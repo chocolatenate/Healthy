@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
@@ -25,6 +27,7 @@ public class MenuFragment extends Fragment {
         _menu.add("BMI");
         _menu.add("Weight");
         _menu.add("Setup");
+        _menu.add("SignOut");
 
         final ArrayAdapter<String> _menuAdapter = new ArrayAdapter<String>(
                 getActivity(),
@@ -36,12 +39,15 @@ public class MenuFragment extends Fragment {
         _menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("MENU", "Click on menu =" + _menu.get(i));
+                Log.d("MENU", "Click on menu = " + _menu.get(i));
                 if (i == 0) {
                     getActivity().startActivity(new Intent(getActivity(), BmiActivity.class));
 
                 } else if (i == 1) {
                     getActivity().startActivity(new Intent(getActivity(), WeightActivity.class));
+                }else if (i==3){
+                    getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
+                    FirebaseAuth.getInstance().signOut();
                 }
 
             }
