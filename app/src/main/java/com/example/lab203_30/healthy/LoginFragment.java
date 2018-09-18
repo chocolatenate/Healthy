@@ -59,9 +59,11 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void onSuccess(AuthResult authResult)
                         {
-                            if(authResult.getUser().isEmailVerified()== true) {
+                            if(authResult.getUser().isEmailVerified()) {
                                 getActivity().startActivity(new Intent(getActivity(), MenuActivity.class));
                                 Log.d("user", "GOTO MENU");
+                            } else {
+                                Toast.makeText(getContext(),"EMAIL NOT VERIFIED",Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -69,7 +71,7 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.d("user","ERROR");
-                            Toast.makeText(getContext(),"ERROE ="+e.getMessage(),Toast.LENGTH_SHORT);
+                            Toast.makeText(getContext(),"ERROE ="+e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     });
 

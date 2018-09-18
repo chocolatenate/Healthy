@@ -73,11 +73,11 @@ public class RegisterFragment extends Fragment {
                 }else if(pass_str.length()<6 || re_pass_str.length()<6){
                     Toast.makeText(getContext(),"PASSWORDต้องมีความกว้างขั้นต่ำุ6ตัวอักษร",Toast.LENGTH_SHORT).show();
 
-//                }else if(!pass_str.equals(re_pass_str)){
-//                    Toast.makeText(getContext(),"PASSWORDไม่ถูกต้อง",Toast.LENGTH_SHORT).show();
-//                } else if(email_str.equals("admin")){
-//                    Toast.makeText(getContext(),"user นี้มีอยู่ในระบบแล้ว",Toast.LENGTH_SHORT).show();
-//                    Log.d("REGISTER","USER ALREAD EXIST");
+                }else if(!pass_str.equals(re_pass_str)){
+                    Toast.makeText(getContext(),"PASSWORDไม่ถูกต้อง",Toast.LENGTH_SHORT).show();
+                } else if(email_str.equals("admin")){
+                    Toast.makeText(getContext(),"user นี้มีอยู่ในระบบแล้ว",Toast.LENGTH_SHORT).show();
+                    Log.d("REGISTER","USER ALREAD EXIST");
 
                 }else if(pass_str.equals(re_pass_str)){
                     mAuth.createUserWithEmailAndPassword(email_str,pass_str).addOnSuccessListener(new OnSuccessListener<AuthResult>() {

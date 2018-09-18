@@ -3,7 +3,7 @@ package com.example.lab203_30.healthy;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.lab203_30.healthy.Weight.WeightFragment;
+import com.example.lab203_30.healthy.weight.WeightFragment;
 
 public class WeightActivity extends AppCompatActivity {
 

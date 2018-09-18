@@ -8,6 +8,7 @@ android {
         minSdkVersion 15
         //noinspection OldTargetApi
         targetSdkVersion 27
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,8 +25,12 @@ dependencies {
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'junit:junit:4.12'
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
 }

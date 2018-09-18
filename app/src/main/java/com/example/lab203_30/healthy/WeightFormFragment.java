@@ -1,11 +1,11 @@
 package com.example.lab203_30.healthy;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +13,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.lab203_30.healthy.Weight.WeightFragment;
-import com.example.lab203_30.healthy.Weight.weight;
+import com.example.lab203_30.healthy.weight.Weight;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class WeightFormFragment extends Fragment {
-    ArrayList<weight> weights = new ArrayList<>();
+    ArrayList<Weight> weights = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,14 +44,27 @@ public class WeightFormFragment extends Fragment {
                 String date_str = date.getText().toString();
                 String weight_str = weight.getText().toString();
 
-                //weights.add(new weight(date_str, Integer.parseInt(weight_str), "UP"));
+                //weights.add(new Weight(date_str, Integer.parseInt(weight_str), "UP"));
 
                 Intent data = new Intent();
-                data.putExtra("weight", weight_str);
+                data.putExtra("Weight", weight_str);
                 data.putExtra("date",date_str);
+                Weight save = new Weight(date_str, Integer.parseInt(weight_str));
 
-//                FirebaseFirestore.getInstance().collection("myfitness").document("uid")
-//                        .collection("weight").document("data")
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                FirebaseFirestore.getInstance().collection("myfitness").document(uid)
+                        .collection("Weight").document(date_str).set(save).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("weight", "done");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("weight", "failed");
+                        Toast.makeText(getContext(),"ERROR = "+e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
 //                getActivity().setResult(Activity.RESULT_OK, data);
