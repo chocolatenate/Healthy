@@ -61,7 +61,7 @@ public class WeightFormFragment extends Fragment {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d("weight", "failed");
+                        Log.d("weight", "ERROR = "+e.getMessage());
                         Toast.makeText(getContext(),"ERROR = "+e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -78,7 +78,7 @@ public class WeightFormFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d("weight", "GOTO MENU");
                 getActivity().startActivity(new Intent(getActivity(), WeightActivity.class));
 
             }

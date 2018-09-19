@@ -35,12 +35,11 @@ public class RegisterFragment extends Fragment {
                 , container, false);
     }
 
-   // private FirebaseAuth mAuth;
     private void sendVerifideEmail(FirebaseUser user){
         user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d("REGISTER","go2menu)");
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -72,9 +71,10 @@ public class RegisterFragment extends Fragment {
                     Log.d("REGISTER","FIELD NAME IS EMPTY");
                 }else if(pass_str.length()<6 || re_pass_str.length()<6){
                     Toast.makeText(getContext(),"PASSWORDต้องมีความกว้างขั้นต่ำุ6ตัวอักษร",Toast.LENGTH_SHORT).show();
-
+                    Log.d("REGISTER", "PASSWORD LESS THAN 6");
                 }else if(!pass_str.equals(re_pass_str)){
                     Toast.makeText(getContext(),"PASSWORDไม่ถูกต้อง",Toast.LENGTH_SHORT).show();
+                    Log.d("REGISTER", "PASSWORD NOT EQUALS RE-PASSWORD");
                 } else if(email_str.equals("admin")){
                     Toast.makeText(getContext(),"user นี้มีอยู่ในระบบแล้ว",Toast.LENGTH_SHORT).show();
                     Log.d("REGISTER","USER ALREAD EXIST");
@@ -85,23 +85,18 @@ public class RegisterFragment extends Fragment {
                         public void onSuccess(AuthResult authResult) {
                             Log.d("REGISTER","GO TO LOGIN");
                             sendVerifideEmail(authResult.getUser());
-                            getActivity().finish();
+                            getActivity().finish();//.finish() ทำให้กลับไปหน้าเดิม
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d("REGISTER","ERROR");
+                            Log.d("REGISTER", "ERROR = " + e.getMessage());
                             Toast.makeText(getActivity(),"ERROR="+e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     });
 
-//                    getActivity().startActivity(new Intent(getActivity(),BmiActivity.class));
-//
-//                    Log.d("REGISTER","GO TO BMI");
 
-//                }else {
-//                    Log.d("User","NOOOOOO");
-              }
+                }
             }
 
         });

@@ -31,8 +31,10 @@ public class LoginFragment extends Fragment {
     @Override //ctrl+o
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //เคย login อยู่แล้ว (มี current user) ให้ไปที่หน้า menu
         if (FirebaseAuth.getInstance().getCurrentUser()!= null){
             getActivity().startActivity(new Intent(getActivity(),MenuActivity.class));
+            Log.d("user","USER id CURRENT");
             return;//เพื่อไม่ให้ทำคำสังด้านล่าง
         }
 
@@ -55,6 +57,8 @@ public class LoginFragment extends Fragment {
                 }else {
                     //getActivity().startActivity(new Intent(getActivity(), MenuActivity.class));//Intent -Actต้นทาง
 //                    ((MainActivity) getActivity()).gotoBmi();
+
+                    //ถ้ายืนยัน EMAIL แล้ว
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(userIdStr,passIdStr).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult)
@@ -73,7 +77,7 @@ public class LoginFragment extends Fragment {
                             Log.d("user","ERROR");
                             Toast.makeText(getContext(),"ERROE ="+e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    });//ถ้ายังไม่ยืนยัน EMAIL แล้ว
 
                 }
 
@@ -84,6 +88,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().startActivity(new Intent(getActivity(),RegisterActivity.class));
+                Log.d("user","GOTO REGISTER");
             }
         });
         }

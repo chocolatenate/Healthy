@@ -34,14 +34,10 @@ public class WeightFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        weights.add(new Weight("01 Jan 2018", 63));
-        weights.add(new Weight("02 Jan 2018", 64));
-        weights.add(new Weight("03 Jan 2018", 63));
-
-//        final ArrayAdapter<Weight> weightAdapter = new ArrayAdapter<Weight>(
-//                getActivity(),
-//                android.R.layout.simple_list_item_1,weights
-//        );
+//        weights.add(new Weight("01 Jan 2018", 63));
+//        weights.add(new Weight("02 Jan 2018", 64));
+//        weights.add(new Weight("03 Jan 2018", 63));
+;
 
         final ListView weightList = getView().findViewById(R.id.weight_list);
         mWeightAdapter = new WeightAdapter(
@@ -50,8 +46,9 @@ public class WeightFragment extends Fragment {
                 weights
         );
         weightList.setAdapter(mWeightAdapter);
-
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        //get value form firebase
         FirebaseFirestore.getInstance().collection("myfitness").document(uid)
                 .collection("Weight").addSnapshotListener(getActivity(), new EventListener<QuerySnapshot>() {
             @Override
@@ -65,7 +62,7 @@ public class WeightFragment extends Fragment {
 
                 mWeightAdapter.notifyDataSetChanged();
             }
-        });
+        });//get value form firebase
 
 
 //                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -86,29 +83,29 @@ public class WeightFragment extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getActivity(), WeightFormActivity.class), 1234);
+                getActivity().startActivity(new Intent(getActivity(), WeightFormActivity.class));
 
             }
         });
 
         //
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1234 && resultCode == Activity.RESULT_OK) {
-            String date = data.getStringExtra("date");
-            String weight = data.getStringExtra("Weight");
-
-            weights.add(new Weight(date, Integer.parseInt(weight)));
-            mWeightAdapter.notifyDataSetChanged();
-
-
-        }
-
-    }
+// ดึงข้อมูลโดยใช้ RESULT_OK
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == 1234 && resultCode == Activity.RESULT_OK) {
+//            String date = data.getStringExtra("date");
+//            String weight = data.getStringExtra("Weight");
+//
+//            weights.add(new Weight(date, Integer.parseInt(weight)));
+//            mWeightAdapter.notifyDataSetChanged();
+//
+//
+//        }
+//
+//    }
 
     @Nullable
     @Override

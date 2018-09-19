@@ -43,6 +43,7 @@ public class BmiFragment extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("BMI","GOTO MENU");
                 getActivity().startActivity(new Intent(getActivity(), MenuActivity.class));
             }
         });
@@ -71,7 +72,7 @@ public class BmiFragment extends Fragment {
                         you.setText("YOUR BMI");
                         bmiTextview.setText(String.format("%.2f", bmi));
                         //_weight.add(Float.toString(bmi));
-                        Log.d("BMI","BMI IS VALUE");
+                        Log.d("BMI","BMI IS VALUE"+String.format("%.2f", bmi));
                     }
 
                 } catch (Exception e){
