@@ -1,4 +1,4 @@
-package com.example.lab203_30.healthy;
+package com.example.lab203_30.healthy.weight;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,14 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.lab203_30.healthy.weight.Weight;
+import com.example.lab203_30.healthy.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 

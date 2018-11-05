@@ -1,6 +1,5 @@
 package com.example.lab203_30.healthy.weight;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.lab203_30.healthy.MenuActivity;
 import com.example.lab203_30.healthy.R;
-import com.example.lab203_30.healthy.WeightFormActivity;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -33,6 +30,13 @@ public class WeightFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Button back = getView().findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), MenuActivity.class));
+            }
+        });
 
 //        weights.add(new Weight("01 Jan 2018", 63));
 //        weights.add(new Weight("02 Jan 2018", 64));

@@ -6,15 +6,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="BACK"
-        android:id="@+id/back_btn"/>
+        android:id="@+id/back2menu_btn"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Weight"
-        android:id="@+id/addweight_btn"/>
+        android:text="Add Sleep"
+        android:id="@+id/addsleep_btn"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/weight_list">
+        android:id="@+id/sleep_list">
     </ListView>
 </LinearLayout>
