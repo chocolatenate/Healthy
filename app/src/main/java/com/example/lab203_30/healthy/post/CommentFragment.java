@@ -1,5 +1,6 @@
 package com.example.lab203_30.healthy.post;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -107,7 +108,7 @@ public class CommentFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new PostFragment()).commit();
+                getActivity().startActivity(new Intent(getActivity(),PostActivity.class));
             }
         });
     }

@@ -104,13 +104,17 @@ public class PostFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Post post = (Post) parent.getAdapter().getItem(position);
-                Fragment fragment = new CommentFragment();
-                Bundle bundle = new Bundle();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                bundle.putInt("postid", post.getId());
-                fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_view, fragment);
-                fragmentTransaction.commit();
+//                Fragment fragment = new CommentFragment();
+//                Bundle bundle = new Bundle();
+//                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                bundle.putInt("postid", post.getId());
+//                fragment.setArguments(bundle);
+//                fragmentTransaction.replace(R.id.main_view, fragment);
+//                fragmentTransaction.commit();
+
+                Intent intent = new Intent(getActivity(), CommentActivity.class);
+                intent.putExtra("postId", post.getId());
+                getActivity().startActivity(intent);
             }
         });
     }

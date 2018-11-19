@@ -24,6 +24,7 @@
         <activity android:name=".sleep.SleepActivity"></activity>
         <activity android:name=".sleep.SleepFormActivity"></activity>
         <activity android:name=".post.PostActivity"></activity>
+        <activity android:name=".post.CommentActivity"></activity>
 
     </application>
 
