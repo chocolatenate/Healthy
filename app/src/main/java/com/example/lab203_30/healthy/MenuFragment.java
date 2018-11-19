@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.lab203_30.healthy.post.PostActivity;
 import com.example.lab203_30.healthy.sleep.SleepActivity;
 import com.example.lab203_30.healthy.weight.WeightActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,7 @@ public class MenuFragment extends Fragment {
         _menu.add("BMI");
         _menu.add("Weight");
         _menu.add("MENU sleep");
+        _menu.add("Post");
         _menu.add("Setup");
         _menu.add("SignOut");
 
@@ -51,7 +53,9 @@ public class MenuFragment extends Fragment {
                     getActivity().startActivity(new Intent(getActivity(), WeightActivity.class));
                 }else if(i==2){
                     getActivity().startActivity(new Intent(getActivity(), SleepActivity.class));
-                } else if (i==4){
+                }else if (i==3){
+                    getActivity().startActivity(new Intent(getActivity(),PostActivity.class));
+                } else if (i==5){
                     getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
                     FirebaseAuth.getInstance().signOut();
                 }
